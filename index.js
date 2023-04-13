@@ -4,12 +4,36 @@ dotenv.config({path : './config/config.env'});
 const express = require('express');
 const app = express();
 const db = require('./config/mongoose');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 
+const passport = require('passport');
+const passportLocal = require('./config/passport-local-strategy');
 
 
 
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+
+//setup express session using mongostore
+app.use(session({
+    name : 'rentorlend',
+    secret : 'rolrollorlor',
+    saveUninitialized : false,
+    resave : false,
+    cookie : {
+        maxAge : (1000*60*100)
+    },
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URI,
+        autoRemove: 'disabled' 
+      })
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(passport.setAuthenticatedUser);
 
 
 // setup express static files
