@@ -13,10 +13,6 @@ const userSchema = new mongoose.Schema({
         type : String,
         required : [true,"Please Enter Your Passoword."],
     },
-    phone : {
-        type : String,
-        required : [true,"Please Enter Your Contact No."]
-    }
 },{timestamps:true});
 
 const User = mongoose.model('User',userSchema);

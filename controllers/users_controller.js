@@ -1,8 +1,10 @@
 const User = require('../models/User');
 
 module.exports.profile = async function(req,res){
-    res.render('profile',{
+    const user = User.findById(req.params.id);
+    res.render('user_profile',{
         title : 'Profile | RendOrLend',
+        user_profile : user
     })
 }
 

@@ -1,0 +1,33 @@
+User
+------------------------
+Full name : andrew John
+Email : andrewjohn@gmail.com
+password : andrew@1234
+
+FullName : Nitish Goswami
+Email : nitishgoswami@gmail.com
+password : nitish@123
+
+FullName : Satyam Ojha
+Email : satyamojha@gmail.com
+password : satyam@123
+
+Product
+----------
+name : Macbook M1 Pro 
+price : 200
+days : 30
+
+name : Astronomical Telescope 
+price : 2000
+days : 20
+
+name : Bowling Machine 
+price : 5000
+days : 30
+
+name : Running Machine 
+price : 500
+days : 60
+
+

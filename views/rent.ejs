@@ -1,0 +1,62 @@
+<div class="card">
+  <div class="card-header">
+    <p>
+      <% if(locals.user && (locals.user.id == product.user.id)) { %>
+        <small>
+          <a href="/products/destroy/<%= product.id %>">Delete</a>
+        </small>
+        <% } %>
+      
+    </p>
+    
+    <%= product.name %>
+   
+  </div>
+  <div class="card-body">
+    Price : <%= product.price %><br>
+      Owner : <%= product.user.name %>
+  </div>
+  <div class="card-footer">
+    <% if(locals.user) { %>
+
+    
+    <button data-bs-toggle="collapse" data-bs-target="#demo">Collapsible</button>
+    <div id="demo" class="collapse">
+      <form action="/reviews/new" method="post">
+        <input type="hidden" name="product_id" value="<%= product._id %>">
+        <div class="mb-3">
+          <label for="comment" class="form-label">Share Your Experience</label>
+          <textarea type="text" rows="2" cols="10" class="form-control" id="comment" name="comment"></textarea>
+        </div>
+        <div class="d-grid">
+          <button type="submit" class="btn btn-block btn-primary" name="">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+    <% } %>
+
+    <% for (var i=0; i < product.reviews.length ; i++) { %>
+
+      <tr>
+        <td>
+          <%= i+1 %>
+        </td>
+        <td>
+          <%= product.reviews[i].comment %>
+          <p>
+            <% if(locals.user && (locals.user.id == product.reviews.user)) { %>
+              <small>
+                <a href="/reviews/destroy">Delete</a>
+              </small>
+              <% } %>
+            
+          </p>
+        </td>
+      </tr>
+      <% } %>
+
+
+  </div>
+</div>

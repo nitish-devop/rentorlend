@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 bg-sucess">
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Item Name</th>
+              <th>Requirement(in Days)</th>
+              <th>Price(Per Day)</th>
+              <th>Description</th>
+              <th>User</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (var i = 0; i < requests.length ; i++) { %>
+            <tr>
+              <td><%= i+1 %></td>
+              <td><%= requests[i].name %></td>
+              <td><%= requests[i].days %></td>
+              <td><%= requests[i].price %></td>
+              <td><%= requests[i].description %></td>
+              <td><%= requests[i].user.name %></td>
+            </tr> 
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-sm-2 bg-warning ">
+      <form action="/requests/new" method="post">
+        <div class="mb-3">
+          <label for="name" class="form-label">Product Name</label>
+          <input type="text" class="form-control" id="name" name="name" />
+        </div>
+        <div class="mb-3">
+          <label for="noofdays" class="form-label">No Of Days</label>
+          <input
+            type="number"
+            class="form-control"
+            id="noofdays"
+            name="days"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">Price(Max Price Range)</label>
+          <input type="number" class="form-control" id="price" name="price" />
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            type="text"
+            rows="2"
+            cols="10"
+            class="form-control"
+            id="description"
+            name="description"
+          ></textarea>
+        </div>
+        <div class="d-grid">
+          <button type="submit" class="btn btn-block btn-primary" name="">
+            Upload Item
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
