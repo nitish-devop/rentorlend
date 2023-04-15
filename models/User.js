@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// Schema for User
 const userSchema = new mongoose.Schema({
     name : {
         type : String,
@@ -13,6 +14,9 @@ const userSchema = new mongoose.Schema({
         type : String,
         required : [true,"Please Enter Your Passoword."],
     },
+    phone : {
+        type : Number,
+    }
 },{timestamps:true});
 
 const User = mongoose.model('User',userSchema);

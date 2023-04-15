@@ -3,14 +3,19 @@ const mongoose = require('mongoose');
 const reviewSchema = new mongoose.Schema({
     comment : {
         type : String,
+        required : true,
     },
+    // Refer to user who create this review
     user : {
         type : mongoose.Schema.Types.ObjectId,
-        ref : 'User'
+        ref : 'User',
+        required : true,
     },
+    // Refer to product whose review is this
     product : {
         type : mongoose.Schema.Types.ObjectId,
-        ref : 'Product'
+        ref : 'Product',
+        required : true,
     },
 
 },{timestamps:true});  

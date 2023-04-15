@@ -22,7 +22,7 @@
     
     <button data-bs-toggle="collapse" data-bs-target="#demo">Collapsible</button>
     <div id="demo" class="collapse">
-      <form action="/reviews/new" method="post">
+      <form action="/reviews/create" method="post">
         <input type="hidden" name="product_id" value="<%= product._id %>">
         <div class="mb-3">
           <label for="comment" class="form-label">Share Your Experience</label>
@@ -37,25 +37,26 @@
     </div>
     <% } %>
 
+    <ol>
+
+    
     <% for (var i=0; i < product.reviews.length ; i++) { %>
 
-      <tr>
-        <td>
-          <%= i+1 %>
-        </td>
-        <td>
+         <li>
           <%= product.reviews[i].comment %>
-          <p>
-            <% if(locals.user && (locals.user.id == product.reviews.user)) { %>
-              <small>
-                <a href="/reviews/destroy">Delete</a>
-              </small>
-              <% } %>
-            
-          </p>
-        </td>
-      </tr>
+          <% if(locals.user && (locals.user.id == product.reviews[i].user._id)) { %>
+            <small>
+              <a href="/reviews/destroy">Delete</a>
+            </small>
+            <% } %>
+          <br>
+          (<%= product.reviews[i].user.name %>)
+         </li> 
+          
+          
+      
       <% } %>
+    </ul>
 
 
   </div>

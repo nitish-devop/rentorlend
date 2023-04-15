@@ -10,6 +10,7 @@ const productSchema = new mongoose.Schema({
         type : Number,
         required : true
     },
+    // refer user who is owner of this product
     user: {
         type : mongoose.Schema.Types.ObjectId,
         ref : 'User'
