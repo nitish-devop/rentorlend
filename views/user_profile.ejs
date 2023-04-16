@@ -1,5 +1,17 @@
-<h1>Hello <%= user_profile.name %></h1>
-<hr>
 
 
-<p>Email : <%= user_profile.email %> </p><br>
+
+<% if(user.id == user_profile._id) { %>
+    <!-- Creating a form for profile update -->
+    <form action="/users/update/<%= user_profile.id %>" method="post">
+        <input type="text" name="name" placeholder="Your name" value="<%= user_profile.name %>">
+        <input type="email" name="email" placeholder="Your email" value="<%= user_profile.email %>">
+        <input type="file" name="avatar" id="" placeholder="Profile Picture" />
+        <input type="submit" value="Update">
+
+    </form>
+<% } else{ %>
+    <h1>Hello <%= user_profile.name %></h1>
+    <hr>
+    <p>Email : <%= user_profile.email %> </p><br>
+<%} %>

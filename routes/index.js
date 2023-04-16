@@ -2,15 +2,27 @@ const express = require('express');
 const Product = require('../models/Product');
 const router = express.Router();
 
-// landing page 
-router.get('/',async function(req,res){
-    const products = await Product.find().populate('user');
+const paginationhandler = 
+async function(req,res){
+    let perPage = 5;
+    let page = req.params.page || 1;
+    const products = await Product.find()
+                                .skip((perPage*page)-perPage)
+                                .limit(perPage)
+                                .populate('user');
+    const productCount = await Product.count();
     console.log(products)
     res.render('home',{
         title : 'Home | RentOrLend',
-        products
+        products,
+        count : productCount,
+        pages : Math.ceil(productCount/perPage),
+        curr : page
     })
-})
+};
+// landing page 
+router.get('/',paginationhandler);
+router.get('/:page',paginationhandler);
 
 // load service routes
 router.use('/services',require('./service_routes'));

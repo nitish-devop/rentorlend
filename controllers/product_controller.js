@@ -1,18 +1,24 @@
 const Product = require('../models/Product');
 const Review = require('../models/Review');
 
+
+
 module.exports.createProduct = async function(req,res){
-    console.log(req.body);
-    const product = await Product.create({
-        name : req.body.name,
-        price : req.body.price,
-        user : req.user._id
-    }
-    );
-    res.status(200).json({
-        Product : product
-    })
-    
+    try{
+        console.log(req.body);
+        const product = await Product.create({
+            name : req.body.name,
+            price : req.body.price,
+            user : req.user._id
+        }
+        );
+        
+        res.status(200).json({
+            Product : product
+        })
+    }catch(err){
+        console.log(err);
+    } 
 }
 
 

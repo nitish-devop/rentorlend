@@ -6,6 +6,8 @@ const app = express();
 const db = require('./config/mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const flash = require('connect-flash');
+const customMiddleWare = require('./config/middleware');
 
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
@@ -61,9 +63,13 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 
+app.use(flash());
+app.use(customMiddleWare.setFlash);
 
 // load express router 
 app.use('/',require('./routes/index'));
+
+
 
 
 
